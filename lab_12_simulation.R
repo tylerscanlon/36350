@@ -22,3 +22,9 @@ run_simulation = function(n_trials, n, p, cutoff){
     hist(sim.objs[i])
   }
 }
+
+datapath = saveRDS(run_simulation(n = c(100, 1000, 10000), p = 10, 20, 50, cutoff = 0.05))
+
+make_plot = function(datapath){
+  hist(datapath)
+}
