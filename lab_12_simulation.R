@@ -12,3 +12,13 @@ model_select = function(covariates, responses, cutoff){
   final.regression = lm(responses ~ retained.covariates)
   return(final.regression[p-values])
 }
+
+run_simulation = function(n_trials, n, p, cutoff){
+  generate_data(n,p) 
+  model_select(responses = generate_data$responses, covariates = generate_data$covariates)
+  sim.objs = vector(length=n_trials, mode="list")
+  for (i in 1:n_trials) {
+    sim.objs[i] = (model_select[p-values])[i]
+    hist(sim.objs[i])
+  }
+}
