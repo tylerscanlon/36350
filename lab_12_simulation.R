@@ -6,3 +6,9 @@ generate_data = function(n, p){
   }
   return(list(covariates = covariates, responses = responses))
 }
+
+model_select = function(covariates, responses, cutoff){
+  retained.covariates = lm(responses ~ covariates[p-value <= cutoff])
+  final.regression = lm(responses ~ retained.covariates)
+  return(final.regression[p-values])
+}
